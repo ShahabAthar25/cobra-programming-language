@@ -10,7 +10,7 @@ try:
 
         for i in range(len(content)):
             lx = lexer(content[i], i)
-            lx.get_values()
+            lx.commit()
             print(lx.get_tree())
 except FileNotFoundError:
     print(f"No file exist with path of ${file_name}")
