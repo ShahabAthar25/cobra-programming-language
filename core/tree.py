@@ -2,14 +2,17 @@ class tree:
     def __init__(self):
         self.version = "0.0.1"
         self.tree = []
+        self.ch = 0
 
     def throw_error(self, error, i=0):
         if error == "syntax":
+            line = self.line.split("\n")
+            print(line)
             print(f"Systax Error at line {self.line_no + 1} and charecter {i}")
             spaces = ""
             for x in range(i):
                 spaces = spaces + " "
-            print(f"|\n| {self.line} <-- Syntax error\n|{spaces}^")
+            print(f"|\n| {line[self.line_no]} <-- Syntax error\n| {spaces}^")
             print(f"Error Type: {error}")
         elif error == "unhandled_error":
             print("Unhandled error!!!")

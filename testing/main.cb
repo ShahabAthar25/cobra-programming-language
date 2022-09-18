@@ -1,1 +1,1 @@
-terminal.out("Hello, my name is Shahab Athar and I am", 15, "years old, my favorite number is", 7, "and Shahab Athar is the best and this is", true, "the opposite is", false)
+terminal.out("Hello, World!!!", 21, 21)
