@@ -16,10 +16,9 @@ class lexer(tree):
             self.ch = ch+keyword_lenght
             return True
         
-        self.ch = ch+keyword_lenght
         return False
 
-    def get_value(self, max_args, min_args):
+    def get_value(self, min_args):
         values = []
         args = []
 
@@ -85,6 +84,54 @@ class lexer(tree):
         
         return values, args
 
+    def parse_var(self):
+        self.ch += 1
+
+        name = ""
+        _type = ""
+        value = ""
+
+        in_value = False
+        in_string = False
+        string_type = ""
+
+        while self.line[self.ch] != "\n":
+            if self.line[self.ch] == "\"" and not in_string and in_value:
+                in_string = True
+                string_type = "\""
+            elif self.line[self.ch] == "'" and not in_string and in_value:
+                in_string = True
+                string_type = "'"
+            elif self.line[self.ch] == string_type and in_string and in_value:
+                in_string = False
+            elif self.search_keywords(self.ch, "::") and not in_value:
+                if self.search_keywords(self.ch, "String"):
+                    _type = "String"
+                elif self.search_keywords(self.ch, "Integer"):
+                    _type = "Integer"
+                elif self.search_keywords(self.ch, "Boolean"):
+                    _type = "Boolean"
+                elif self.search_keywords(self.ch, "Float"):
+                    _type = "Float"
+                elif self.search_keywords(self.ch, "Array"):
+                    _type = "Array"
+                elif self.search_keywords(self.ch, "Object"):
+                    _type = "Object"
+                else:
+                    self.throw_error("syntax", self.ch)
+            elif self.line[self.ch] == "=" or in_value:
+                in_value = True
+                if not in_string and self.line[self.ch] == " " or not in_string and self.line[self.ch] == "=":
+                    pass
+                else:
+                    value =  value + self.line[self.ch]
+            else:
+                name = name + self.line[self.ch]
+
+            self.ch +=1
+        
+        return name, _type, value
+
     def commit(self):
         in_string = False
         i = 0
@@ -104,15 +151,17 @@ class lexer(tree):
                         break
             elif self.search_keywords(i, "printLn"):
                 i = self.ch
-                values, args = self.get_value(2, 1)
-                self.tree_add_item("inline_func", "printLn", values, args)
+                values, args = self.get_value(1)
+                self.tree_add_inline_func("printLn", values, args)
                 i = self.ch
             elif self.search_keywords(i, "inputLn"):
                 i = self.ch
-                values, args = self.get_value(2, 1)
-                self.tree_add_item("inline_func", "inputLn", values, args)
+                values, args = self.get_value(1)
+                self.tree_add_inline_func("inputLn", values, args)
                 i = self.ch
             elif self.search_keywords(i, "var"):
+                name, _type, value = self.parse_var()
+                self.tree_add_variable(name, _type, value)
                 i = self.ch
             else:
                 self.throw_error("syntax", i)

@@ -21,16 +21,21 @@ class tree:
 
         exit()
 
-    def tree_add_item(self, type, name, values, extras=[]):
-        if (type == "inline_func"):
-            self.tree.append({
-                "type": type,
-                "name": name,
-                "values": values,
-                "extras": extras
-            })
-        else:
-            self.throw_error("unhandled_error")
+    def tree_add_inline_func(self, name, values, extras=[]):
+        self.tree.append({
+            "type": "inline_func",
+            "name": name,
+            "values": values,
+            "extras": extras
+        })
+    
+    def tree_add_variable(self, name, var_type, value):
+        self.tree.append({
+            "type": "variable",
+            "name": name,
+            "var_type": var_type,
+            "value": value,
+        })
 
     def get_tree(self):
         return self.tree

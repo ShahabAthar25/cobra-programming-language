@@ -3,13 +3,13 @@ printLn("Hello, World!")
 inputLn("Hello, World!")
 
 # Variables
-#var string::String = "Hello World"
-#var booleanTrue::Boolean = true
-#var booleanFalse::Boolean = false
-#var integer::Integer = 15
-#var floatingPointNumber::Float = 15.6
-#var array::Array = [1, 2, 4]
-#var object::Object = { name: "Shahab Athar", age: 15 }
+var string::String = "Hello World"
+var booleanTrue::Boolean = true
+var booleanFalse::Boolean = false
+var integer::Integer = 15
+var floatingPointNumber::Float = 15.6
+var array::Array = [1, 2, 4]
+var object::Object = { name: "Shahab Athar", age: 15 }
 
 # types
 #type(booleanTrue)
