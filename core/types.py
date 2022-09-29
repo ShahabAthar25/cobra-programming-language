@@ -9,3 +9,21 @@ class types:
             "value": value,
             "args": extras,
         })
+
+    def get_string_obj(self, value):
+        return {
+            "type": "string",
+            "value": value
+        }
+
+    def get_int_obj(self, value):
+        return {
+            "type": "int",
+            "value": value
+        }
+
+    def get_boolean_obj(self, value):
+        return {
+            "type": "boolean",
+            "value": value
+        }

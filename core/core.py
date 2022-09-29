@@ -15,9 +15,6 @@ class core(types):
             self.current_line += 1
 
     def move_right(self):
-        # print(len(self.content[self.current_line]))
-        # print(self.char)
-        # print(len(self.content) <= self.current_line)
         if len(self.content[self.current_line]) == self.char:
             self.append_line()
             self.char = 0
