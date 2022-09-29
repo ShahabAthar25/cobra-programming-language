@@ -1,0 +1,2 @@
+printLn("Hello, World!")
+inputLn("Hello, World!")
