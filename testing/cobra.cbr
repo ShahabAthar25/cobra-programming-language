@@ -1,2 +1,2 @@
-printLn("Hello, World!")
+printLn("Hello, World!", 123, true, false)
 inputLn("Hello, World!")

@@ -7,7 +7,7 @@ class parser(core):
 
     def search_keyword(self, keyword):
         if self.content[self.current_line][self.char:self.char+len(keyword)] == keyword:
-            self.char = self.char + len(keyword)
+            self.char += len(keyword)
 
             return True
         
@@ -16,12 +16,13 @@ class parser(core):
     def get_values(self):
         value = []
 
-        in_string = ""
+        in_string = False
+        in_int = False
         string_type = ""
         current_value = ""
 
         i = 0
-        while i != len(self.get_current_line()):
+        while True:
             if self.get_current_char() == "\"" and not in_string:
                 in_string = True
                 string_type = "\""
@@ -37,10 +38,24 @@ class parser(core):
                 current_value = ""
             elif in_string:
                 current_value = current_value + self.get_current_char()
-            elif self.get_current_char() == ")":
-                break
+            elif not in_string:
+                if self.get_current_char() in "1234567890":
+                    current_value = current_value + self.get_current_char()
+                    in_int = True
+                elif self.get_current_char() not in "1234567890" and in_int:
+                    value.append(self.get_int_obj(current_value))
+                    in_int = False
+                    current_value = ""
+                elif self.search_keyword("true"):
+                    value.append(self.get_boolean_obj("true"))
+                elif self.search_keyword("false"):
+                    value.append(self.get_boolean_obj("false"))
 
-            self.move_right()
+                if self.get_current_char() == ")" and not in_string:
+                    break
+
+            if self.move_right():
+                self.append_line()
             i += 1
 
         return value
@@ -48,5 +63,12 @@ class parser(core):
     def parse(self):
         while self.current_line <= len(self.content):
             if self.search_keyword("printLn"):
-                print(self.get_values())
-            self.move_right()
+                values = self.get_values()
+                self.append_inline_func("printLn", values)
+
+            if self.check_next_line_exists():
+                self.move_right()
+            else:
+                break
+
+        print(self.tree)

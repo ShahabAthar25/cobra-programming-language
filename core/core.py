@@ -9,10 +9,7 @@ class core(types):
         self.char = 0
 
     def append_line(self):
-        if len(self.content)-1 <= self.current_line:
-            exit()
-        else:
-            self.current_line += 1
+        self.current_line += 1
 
     def move_right(self):
         if len(self.content[self.current_line]) == self.char:
@@ -21,8 +18,15 @@ class core(types):
         else:
             self.char += 1
 
+    def check_next_line_exists(self):
+        if len(self.content)-1 == self.current_line and len(self.get_current_line()) == self.char:
+            return False
+
+        return True
+
+
     def get_current_line(self):
         return self.content[self.current_line]
 
-    def get_current_char(self):
-        return self.content[self.current_line][self.char]
+    def get_current_char(self, previous=0):
+        return self.content[self.current_line][self.char+previous]
