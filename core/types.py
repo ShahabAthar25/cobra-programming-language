@@ -27,3 +27,10 @@ class types:
             "type": "boolean",
             "value": value
         }
+
+    def get_arg_obj(self, name, value):
+        return {
+            "type": "arg",
+            "name": name,
+            "value": value
+        }

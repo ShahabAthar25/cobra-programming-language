@@ -1,2 +1,4 @@
-printLn("Hello, World!", 123, true, false)
-inputLn("Hello, World!")
+# Inline Functions
+
+printLn("Hello, World!", 123, false, 123, defer=ture)
+# inputLn(123)
