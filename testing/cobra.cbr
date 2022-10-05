@@ -1,6 +1,6 @@
 # Inline Functions
 
-printLn(1, 1+1, 1-1, 1*1, 1/1)
+printLn(1, 1+1, 1-1, 1*1, 1/1, 3^3)
 # inputLn("123", 123)
 
 # for (i, 10, 1) {

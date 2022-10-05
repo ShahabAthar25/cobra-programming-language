@@ -45,7 +45,7 @@ class parser(Maths, core):
             elif in_string:
                 current_value = current_value + self.get_current_char()
             elif not in_string:
-                if self.get_current_char() in "1234567890+-*/":
+                if self.get_current_char() in "1234567890+-*/^":
                     current_value = current_value + self.get_current_char()
                     in_int = True
                 elif self.get_current_char() not in "1234567890" and in_int:
