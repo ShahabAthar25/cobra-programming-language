@@ -1,0 +1,9 @@
+# printLn Test
+
+printLn("Hello, I am Shahab Athar and I am ", 15, " years old")
+printLn("I have created this programming language which can")
+printLn("all kinds of stuff like maths")
+printLn("7+5: ", 7+5, ", 7-5: ", 7-5, ", 7*5: ", 7*5, ", 7/5: ", 7/5, ", 7^5: ", 7^5, ", 7%5: ", 7%5)
+printLn("Pretty cool right.")
+printLn("You can even end a line with your choise of charecters", endsWith="")
+printLn(" ------------cobra")

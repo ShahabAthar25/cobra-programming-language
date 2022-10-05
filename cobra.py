@@ -1,4 +1,5 @@
 import sys
+from core.executer import Executer
 
 from core.parser import parser
 
@@ -9,3 +10,10 @@ with open(filename, "r") as file:
 
     lexer = parser(content)
     lexer.parse()
+
+    tree = lexer.get_tree()
+
+    tokens = Executer(tree)
+    tokens.execute()
+
+    
