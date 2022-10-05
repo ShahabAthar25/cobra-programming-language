@@ -28,9 +28,15 @@ class types:
             "value": value
         }
 
-    def get_arg_obj(self, name, value):
+    def get_arg_obj(self, value):
         return {
             "type": "arg",
-            "name": name,
             "value": value
+        }
+
+    def get_maths_obj(self, value1, operator, value2):
+        return {
+            "value1": value1,
+            "operator": operator,
+            "value2": value2
         }

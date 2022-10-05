@@ -1,4 +1,8 @@
 # Inline Functions
 
-printLn("Hello, World!", 123, false, 123, defer=ture)
-# inputLn(123)
+printLn(1, 1+1, 1-1, 1*1, 1/1)
+# inputLn("123", 123)
+
+# for (i, 10, 1) {
+#     printLn("Hello World")
+# }

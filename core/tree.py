@@ -1,11 +1,11 @@
-tree = {
+functions = {
     "printLn": {
         "type": "inline_func",
         "allowed_args": {
             "endsWith": {
                 "default": "\n",
-                "required": True,
-            }
+                "isBoolean": False,
+            },
         }
     },
     "inputLn": {
@@ -13,11 +13,11 @@ tree = {
         "allowed_args": {
             "endsWith": {
                 "default": "\n",
-                "required": True,
+                "isBoolean": False,
             },
             "showInput": {
                 "default": True,
-                "required": True
+                "isBoolean": True,
             }
         }
     }
