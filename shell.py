@@ -1,4 +1,5 @@
-from core.Lexer import Lexer
+from Core.Lexer import Lexer
+from Core.Parser import Parser
 
 
 while True:
@@ -7,4 +8,7 @@ while True:
     lexer = Lexer(text)
     tokens = lexer.generate_tokens()
 
-    print(list(tokens))
+    parser = Parser(tokens)
+    tree = parser.parse()
+
+    print(tree)

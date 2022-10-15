@@ -1,4 +1,4 @@
-from core.Tokens import Token, TokenType
+from Core.Tokens import Token, TokenType
 
 WHITESPACE = ' \n\t'
 DIGITS = '0123456789'
@@ -34,6 +34,12 @@ class Lexer:
             elif self.current_char == "/":
                 self.advance()
                 yield Token(TokenType.DIVIDE)
+            elif self.current_char == "(":
+                self.advance()
+                yield Token(TokenType.LPAREN)
+            elif self.current_char == ")":
+                self.advance()
+                yield Token(TokenType.RPAREN)
             else:
                 raise Exception(f"Illegal Charecter '{self.current_char}'")
     
