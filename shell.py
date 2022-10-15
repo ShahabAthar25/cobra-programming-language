@@ -1,8 +1,10 @@
-import core.Lexer as lexer
+from core.Lexer import Lexer
+
 
 while True:
     text = input("COBRA >>> ")
 
-    result = lexer.run(text, "<stdin>")
+    lexer = Lexer(text)
+    tokens = lexer.generate_tokens()
 
-    print(result)
+    print(list(tokens))
