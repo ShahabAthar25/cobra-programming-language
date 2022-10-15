@@ -54,8 +54,26 @@ class Parser:
     def factor(self):
         token = self.current_token
 
-        if token.type == TokenType.NUMBER:
+        if token.type == TokenType.LPAREN:
+            self.advance()
+            result = self.expr()
+            
+            if self.current_token.type != TokenType.RPAREN:
+                raise Exception("Invalid Syntax")
+            
+            self.advance()
+            return result
+
+        elif token.type == TokenType.NUMBER:
             self.advance()
             return NumberNode(token.value)
+
+        elif token.type == TokenType.PLUS:
+            self.advance()
+            return PlusNode(self.factor())
+
+        elif token.type == TokenType.MINUS:
+            self.advance()
+            return MinusNode(self.factor())
 
         raise Exception("Invalid Syntax")
