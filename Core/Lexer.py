@@ -5,16 +5,15 @@ DIGITS = '0123456789'
 
 class Lexer:
     def __init__(self, text):
-        self.text = iter(text)
-        self.current_char = ""
+        self.text = text
+        self.pos = -1
+        self.current_char = None
 
         self.advance()
 
     def advance(self):
-        try:
-            self.current_char = next(self.text)
-        except StopIteration:
-            self.current_char = None
+        self.pos += 1
+        self.current_char = self.text[self.pos] if self.pos < len(self.text) else None
 
     def generate_tokens(self):
         while self.current_char != None:
