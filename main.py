@@ -12,7 +12,7 @@ def run(fn, text):
     parser = Parser(tokens)
     ast = parser.parse()
 
-    return ast, error
+    return ast.node, ast.error
 
 while True:
     try:
@@ -24,5 +24,5 @@ while True:
     except KeyboardInterrupt:
         print("\n", end="")
         break
-    # except Exception as e:
-    #     print("Error: ", e)
+    except Exception as e:
+        print("Error: ", e)
