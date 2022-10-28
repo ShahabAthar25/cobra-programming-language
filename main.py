@@ -1,6 +1,15 @@
+#####################################
+# IMPORTS
+#####################################
+
+from context import Context
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
+
+#####################################
+# RUN
+#####################################
 
 def run(fn, text):
     # Generating tokesn
@@ -15,9 +24,14 @@ def run(fn, text):
 
     # Run program
     interpreter = Interpreter()
-    result = interpreter.visit(ast.node)
+    context = Context('<program>')
+    result = interpreter.visit(ast.node, context)
 
     return result.value, result.error
+
+#####################################
+# SHELL
+#####################################
 
 while True:
     try:
