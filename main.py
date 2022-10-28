@@ -6,6 +6,13 @@ from context import Context
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
+from symbolTable import SymbolTable
+
+#####################################
+# GLOABAL SYMBOL TABLE
+#####################################
+
+global_symbol_table = SymbolTable()
 
 #####################################
 # RUN
@@ -25,6 +32,7 @@ def run(fn, text):
     # Run program
     interpreter = Interpreter()
     context = Context('<program>')
+    context.symbol_table = global_symbol_table
     result = interpreter.visit(ast.node, context)
 
     return result.value, result.error
