@@ -1,4 +1,4 @@
-import ast
+from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
 
@@ -11,8 +11,13 @@ def run(fn, text):
     # Generating AST
     parser = Parser(tokens)
     ast = parser.parse()
+    if ast.error: return None, ast.error
 
-    return ast.node, ast.error
+    # Run program
+    interpreter = Interpreter()
+    result = interpreter.visit(ast.node)
+
+    return result.value, result.error
 
 while True:
     try:
@@ -24,5 +29,5 @@ while True:
     except KeyboardInterrupt:
         print("\n", end="")
         break
-    except Exception as e:
-        print("Error: ", e)
+    # except Exception as e:
+    #     print("Error: ", e)
