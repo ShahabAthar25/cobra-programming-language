@@ -7,12 +7,14 @@ from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
 from symbolTable import SymbolTable
+from symbols import set_symbols
 
 #####################################
 # GLOABAL SYMBOL TABLE
 #####################################
 
 global_symbol_table = SymbolTable()
+set_symbols(global_symbol_table)
 
 #####################################
 # RUN
