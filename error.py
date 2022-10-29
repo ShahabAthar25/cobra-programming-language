@@ -1,4 +1,10 @@
 ############################
+# IMPORTS
+############################
+
+from string_with_arrows import string_with_arrows
+
+############################
 # ERROR
 ############################
 
@@ -10,14 +16,9 @@ class Error:
         self.details = details
 
     def as_string(self):
-        text_split = self.pos_start.ftxt.split("\n")
-        result = f'{self.error_name}: {self.details}'
-        result += f'\nIn file {self.pos_start.fn} and line {self.pos_start.ln + 1}'
-        result += f'\n|    {text_split[self.pos_start.ln]}'
-        result += f'\n     '
-        for i in range(self.pos_start.col):
-            result += ' '
-        result += "^"
+        result = f'{self.error_name}: {self.details}\n'
+        result += f'File {self.pos_start.fn}, line {self.pos_start.ln + 1}'
+        result += '\n\n' + string_with_arrows(self.pos_start.ftxt, self.pos_start, self.pos_end)
         return result
 
 ############################
@@ -39,14 +40,8 @@ class RTError(Error):
     
     def as_string(self):
         result = self.generated_tracebook()
-        text_split = self.pos_start.ftxt.split("\n")
-        result += f'{self.error_name}: {self.details}'
-        result += f'\nIn file {self.pos_start.fn} and line {self.pos_start.ln + 1}'
-        result += f'\n|    {text_split[self.pos_start.ln]}'
-        result += f'\n     '
-        for i in range(self.pos_start.col):
-            result += ' '
-        result += "^"
+        result += f'{self.error_name}: {self.details}\n'
+        result += '\n\n' + string_with_arrows(self.pos_start.ftxt, self.pos_start, self.pos_end)
         return result
 
     def generated_tracebook(self):
